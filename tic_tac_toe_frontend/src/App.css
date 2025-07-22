@@ -1,13 +1,21 @@
 /* CSS Variables for Theme Management */
 :root {
   /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
+  --bg-primary: #fcfcfd;
+  --bg-secondary: #f7faff;
+  --text-primary: #23272f;
+  --text-secondary: #757575;
   --border-color: #e9ecef;
-  --button-bg: #007bff;
+  --button-bg: #1976D2;
   --button-text: #ffffff;
+  /* Custom palette accents */
+  --accent: #E53935;
+  --primary: #1976D2;
+  --secondary: #FFC107;
+  /* Subtle background gradient/shape accents */
+  --background-accent1: rgba(25, 118, 210, 0.09);   /* blue (primary, faint) */
+  --background-accent2: rgba(255, 193, 7, 0.08);    /* yellow (secondary, faint) */
+  --background-accent3: rgba(229, 57, 53, 0.09);    /* red (accent, faint) */
 }
 
 [data-theme="dark"] {
@@ -23,10 +31,20 @@
 
 .App {
   text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--text-primary);
+  position: relative;
+  /* Multi-layer: soft white/blue/yellow accent with geometric blur for depth */
+  background:
+    linear-gradient(120deg, var(--bg-primary) 65%, var(--bg-secondary) 100%),
+    /* blue top right accent */
+    radial-gradient(ellipse 64% 40% at 90% 0%, var(--background-accent1), transparent 72%),
+    /* yellow bottom left accent */
+    radial-gradient(ellipse 50% 32% at 7% 98%, var(--background-accent2), transparent 80%),
+    /* red subtle overlay bottom right */
+    radial-gradient(ellipse 70% 26% at 97% 88%, var(--background-accent3), transparent 78%);
+  transition: background 0.4s cubic-bezier(.7,.2,.3,.8), color 0.3s;
+  overflow-x: hidden;
 }
 
 .App-logo {
@@ -41,16 +59,23 @@
 }
 
 .App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+  /* Use transparency for a card-like effect over the fancy background */
+  background: rgba(255,255,255,0.94);
+  min-height: 80vh;
+  margin: 0 auto;
+  max-width: 490px;
+  border-radius: 22px;
+  box-shadow: 0 5px 40px 0 rgba(25,118,210,0.09), 0 1.5px 8px 0 rgba(229,57,53,0.06);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: var(--text-primary);
-  transition: background-color 0.3s ease;
+  transition: background 0.35s, box-shadow 0.32s;
   position: relative;
+  padding: 2.7rem 2.5vw 2.5rem 2.5vw;
+  z-index: 1;
 }
 
 .App-link {
@@ -95,6 +120,15 @@
 
 /* Responsive design for mobile */
 @media (max-width: 768px) {
+  .App {
+    min-height: 100vh;
+    background:
+      linear-gradient(115deg, var(--bg-primary) 74%, var(--bg-secondary) 100%),
+      radial-gradient(ellipse 65% 40% at 100% 0%, var(--background-accent1), transparent 80%),
+      radial-gradient(ellipse 41% 31% at 0% 100%, var(--background-accent2), transparent 82%);
+    transition: background 0.4s;
+  }
+
   .theme-toggle {
     top: 10px;
     right: 10px;
@@ -115,7 +149,10 @@
     min-height: 56px;
   }
   .App-header {
-    padding: 4vw 0 !important;
+    max-width: 99vw !important;
+    padding: 4vw 6vw 4vw 6vw !important;
+    border-radius: 12px !important;
+    min-height: unset !important;
   }
 }
 

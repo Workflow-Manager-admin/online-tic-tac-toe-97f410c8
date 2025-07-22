@@ -1,21 +1,21 @@
 /* CSS Variables for Theme Management */
 :root {
   /* Light theme colors */
-  --bg-primary: #fcfcfd;
-  --bg-secondary: #f7faff;
-  --text-primary: #23272f;
-  --text-secondary: #757575;
-  --border-color: #e9ecef;
-  --button-bg: #1976D2;
-  --button-text: #ffffff;
+  --bg-primary: #E53935; /* Prominent red */
+  --bg-secondary: #850606; /* Even deeper red for subtle accent uses */
+  --text-primary: #fff;   /* White for best contrast on red */
+  --text-secondary: #ffd8d8; /* Soft light pinkish for subdued contrast/text */
+  --border-color: #fff3f3;
+  --button-bg: #ffffff;
+  --button-text: #E53935;
   /* Custom palette accents */
   --accent: #E53935;
   --primary: #1976D2;
   --secondary: #FFC107;
-  /* Subtle background gradient/shape accents */
-  --background-accent1: rgba(25, 118, 210, 0.09);   /* blue (primary, faint) */
-  --background-accent2: rgba(255, 193, 7, 0.08);    /* yellow (secondary, faint) */
-  --background-accent3: rgba(229, 57, 53, 0.09);    /* red (accent, faint) */
+  /* Subtle background gradient/shape accents (less used now) */
+  --background-accent1: rgba(255,255,255,0.07);  /* white overlay accent, very subtle */
+  --background-accent2: rgba(255,255,255,0.01);
+  --background-accent3: rgba(229, 57, 53, 0.15);
 }
 
 [data-theme="dark"] {
@@ -34,15 +34,7 @@
   min-height: 100vh;
   color: var(--text-primary);
   position: relative;
-  /* Multi-layer: soft white/blue/yellow accent with geometric blur for depth */
-  background:
-    linear-gradient(120deg, var(--bg-primary) 65%, var(--bg-secondary) 100%),
-    /* blue top right accent */
-    radial-gradient(ellipse 64% 40% at 90% 0%, var(--background-accent1), transparent 72%),
-    /* yellow bottom left accent */
-    radial-gradient(ellipse 50% 32% at 7% 98%, var(--background-accent2), transparent 80%),
-    /* red subtle overlay bottom right */
-    radial-gradient(ellipse 70% 26% at 97% 88%, var(--background-accent3), transparent 78%);
+  background: var(--bg-primary); /* pure red */
   transition: background 0.4s cubic-bezier(.7,.2,.3,.8), color 0.3s;
   overflow-x: hidden;
 }
@@ -59,19 +51,19 @@
 }
 
 .App-header {
-  /* Use transparency for a card-like effect over the fancy background */
-  background: rgba(255,255,255,0.94);
+  /* Use solid light background for best contrast with red app bg */
+  background: #ffffff;
   min-height: 80vh;
   margin: 0 auto;
   max-width: 490px;
   border-radius: 22px;
-  box-shadow: 0 5px 40px 0 rgba(25,118,210,0.09), 0 1.5px 8px 0 rgba(229,57,53,0.06);
+  box-shadow: 0 7px 46px 0 rgba(0,0,0,0.08), 0 1.5px 12px 0 rgba(229,57,53,0.12);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
+  color: #222222;
   transition: background 0.35s, box-shadow 0.32s;
   position: relative;
   padding: 2.7rem 2.5vw 2.5rem 2.5vw;
@@ -149,10 +141,13 @@
     min-height: 56px;
   }
   .App-header {
+    background: #fff !important;
     max-width: 99vw !important;
     padding: 4vw 6vw 4vw 6vw !important;
     border-radius: 12px !important;
     min-height: unset !important;
+    box-shadow: 0 4px 18px 0 rgba(0,0,0,0.13) !important;
+    color: #222 !important;
   }
 }
 
@@ -164,6 +159,10 @@
 }
 .ttt-board {
   margin: 20px auto 0 auto;
+  background: #fcfcfc;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10), 0 0.5px 3px 0 #E5393540;
+  padding: 10px 3px 16px 3px;
 }
 
 .ttt-btn {
@@ -199,5 +198,16 @@
   align-items: center;
   justify-content: center;
   user-select: none;
+  outline: none;
+  background: #fff;
+  border: 2px solid #e53935;
+  box-shadow: 0 1px 6px rgba(229,57,53,0.10);
+  color: #e53935;
+  transition: background 0.25s, box-shadow 0.18s;
+}
+
+.ttt-cell:focus, .ttt-cell:active {
+  background: #ffeaea;
+  box-shadow: 0 0 0 2px #FFC10740, 0 1.5px 10px 0 rgba(229,57,53,0.12);
   outline: none;
 }

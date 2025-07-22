@@ -101,4 +101,66 @@
     padding: 8px 16px;
     font-size: 12px;
   }
+  .ttt-board {
+    width: 100vw !important;
+    max-width: 99vw !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 5vw !important;
+  }
+  .ttt-cell {
+    width: 27vw !important;
+    height: 27vw !important;
+    font-size: 2rem !important;
+    min-width: 56px;
+    min-height: 56px;
+  }
+  .App-header {
+    padding: 4vw 0 !important;
+  }
+}
+
+/* Tic Tac Toe App custom styles */
+.ttt-board-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ttt-board {
+  margin: 20px auto 0 auto;
+}
+
+.ttt-btn {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: var(--button-bg);
+  color: var(--button-text);
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.18s, background 0.2s;
+  margin: 0 6px;
+  box-shadow: 0 1px 6px rgba(25, 118, 210, 0.06);
+  border: none;
+}
+
+.ttt-btn:active {
+  transform: scale(0.97);
+  opacity: 0.94;
+}
+
+.ttt-btn:disabled {
+  background: #ddd !important;
+  color: #aaa !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.ttt-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  outline: none;
 }
